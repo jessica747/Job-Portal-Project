@@ -4,7 +4,7 @@ from django.contrib.auth.models import AbstractUser
 class custom_user_model(AbstractUser):
     Usertype=[
         ('recruiter','Recruiter'),
-        ('jobseeker','jobseeker'),
+        ('jobseeker','Jobseeker'),
     ]
 
     user_type=models.CharField(choices=Usertype,max_length=100,null=True)
@@ -36,7 +36,6 @@ class add_job_model(models.Model):
     category=models.CharField(max_length=100,null=True)
     skills_set=models.CharField(max_length=100,null=True)
     job_description=models.TextField(null=True)
-
     adduser=models.ForeignKey(custom_user_model,on_delete=models.CASCADE,null=True)
 
     def __str__(self):

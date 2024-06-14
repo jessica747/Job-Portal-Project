@@ -10,6 +10,13 @@ urlpatterns = [
     path('signupPage/',signupPage,name="signupPage"),
     path('dashboard/',dashboard,name="dashboard"),
     path('logoutPage/',logoutPage,name="logoutPage"),
+    path('joblistPage/',joblistPage,name="joblistPage"),
+
+    #recruiter
+    path('addjobPage/',addjobPage,name="addjobPage"),
+    path('deletejob/<str:jobid>',deletejob,name="deletejob"),
+    path('editjob/<str:jobid>',editjob,name="editjob"),
+    path('viewjob/<str:jobid>',viewjob,name="viewjob"),
 
 
 

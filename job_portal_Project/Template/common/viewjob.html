@@ -1,0 +1,19 @@
+{% extends 'common/base.html' %}
+{% block content %}
+<h1>This is view job</h1>
+
+<h3>Title:</h3>
+<p>{{viewjobdata.title}}</p>
+<h3>Number Of Openings</h3>
+<p>{{viewjobdata.number_of_openings}}</p>
+<h3>Category</h3>
+<p>{{viewjobdata.category}}</p>
+<h3>Skills set</h3>
+<p>{{viewjobdata.skills_set}}</p>
+<h3>Job Descriptions</h3>
+<p>{{viewjobdata.job_description}}</p>
+<h3>Created By</h3>
+<p>{{viewjobdata.adduser}}</p>
+    
+{% endblock content %}
+    

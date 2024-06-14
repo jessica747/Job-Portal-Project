@@ -1,6 +1,8 @@
 <ul>
     <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
-    <li><a href="#news">News</a></li>
-    <li><a href="#contact">Contact</a></li>
+    {% if user.user_type == "recruiter" %}
+    <li><a href="{% url 'addjobPage' %}">Add Job</a></li>
+    {% endif %}
+    <li><a href="{% url 'joblistPage' %}">Job list Page</a></li>
     <li style="float:right"><a class="active" href="{% url 'logoutPage' %}">Logout</a></li>
 </ul>

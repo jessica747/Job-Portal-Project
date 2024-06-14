@@ -36,3 +36,51 @@ def dashboard(request):
 def logoutPage(request):
     logout(request)
     return redirect('signinPage')
+
+@login_required
+def addjobPage(request):
+    if request.method =='POST':
+        print("i am in the post method now")
+        addjobform=add_job_form(request.POST)
+        if addjobform.is_valid():
+            user=addjobform.save(commit=False)
+            user.adduser=request.user
+            addjobform.save()
+            return redirect('joblistPage')
+    else:
+        print("i am in else now")
+        addjobform=add_job_form()   
+
+    return render(request,'recruiter/addjobPage.html',{'addjobform':addjobform})
+
+
+@login_required
+def joblistPage(request):
+    jobdata=add_job_model.objects.all()
+    return render(request,'common/joblistPage.html',{'jobdata':jobdata})
+
+@login_required
+def deletejob(request,jobid):
+    deletedata=add_job_model.objects.get(id=jobid)
+    deletedata.delete()
+    return redirect('joblistPage')
+
+@login_required
+def editjob(request,jobid):
+    editjobdata=add_job_model.objects.get(id=jobid)
+    if request.method=='POST':
+        editjobdataform=add_job_form(request.POST,instance=editjobdata)
+        if editjobdataform.is_valid():
+            editjobdataform.save()
+            return redirect('joblistPage')
+    else:
+        editjobdataform=add_job_form(instance=editjobdata)
+    return render(request,'recruiter/editjob.html',{'editjobdataform':editjobdataform})
+
+
+@login_required
+def viewjob(request,jobid):
+    viewjobdata=add_job_model.objects.get(id=jobid)
+    return render(request,'common/viewjob.html',{'viewjobdata':viewjobdata})
+
+
