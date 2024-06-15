@@ -84,3 +84,13 @@ def viewjob(request,jobid):
     return render(request,'common/viewjob.html',{'viewjobdata':viewjobdata})
 
 
+@login_required
+def profilePage(request):
+    return render(request,'profile/profilePage.html')
+
+@login_required
+def profileinfoPage(request):
+    profileinfodata=custom_user_model.objects.all()
+    return render(request,'profile/profileinfoPage.html',{'profileinfodata':profileinfodata})
+
+

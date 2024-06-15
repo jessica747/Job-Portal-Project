@@ -19,6 +19,8 @@ urlpatterns = [
     path('viewjob/<str:jobid>',viewjob,name="viewjob"),
 
 
+    path('profilePage/',profilePage,name="profilePage"),
+    path('profileinfoPage/',profileinfoPage,name="profileinfoPage"),
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
