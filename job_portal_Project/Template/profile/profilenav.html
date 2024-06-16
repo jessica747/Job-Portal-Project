@@ -1,9 +1,14 @@
-<button class="button"><a href="{% url 'profileinfoPage' %}">Profile Information</a></button>
+<button class="button"><a href="{% url 'profileinfoPage' %}">Profile Information</a></button> <!-- green -->
+
+{% if user.user_type == 'recruiter' %}
+<button class="button button2"><a href="{% url 'recruiterinfo' %}">Recruiter Information</a></button> <!-- blue -->
+<button class="button"><a href=""><a href="">Posted Job</a></a></button>
+{% elif user.user_type == 'seeker' %}
+
+<button class="button button3"><a href="{% url 'seekerinfo' %}">Seeker Information</a></button><!-- red -->
+<button class="button button2"><a href="">Applied Job</a></button> <!-- blue -->
+{% endif %}
 
 
+<button class="button button4"><a href="">Password Change</a></button>
 
-
-<button class="button button2">Blue</button>
-<button class="button button3">Red</button>
-<button class="button button4">Gray</button>
-<button class="button button5">Black</button>

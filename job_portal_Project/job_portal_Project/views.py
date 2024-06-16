@@ -90,7 +90,17 @@ def profilePage(request):
 
 @login_required
 def profileinfoPage(request):
-    profileinfodata=custom_user_model.objects.all()
-    return render(request,'profile/profileinfoPage.html',{'profileinfodata':profileinfodata})
+   
+    return render(request,'profile/profileinfoPage.html')
 
 
+@login_required
+def recruiterinfo(request):
+    recdadainfo=recruiter_info_model.objects.all()
+    return render(request,'profile/recruiterinfo.html',{'recdadainfo': recdadainfo})
+
+
+@login_required
+def seekerinfo(request):
+    seekerdadainfo=seeker_info_model.objects.all()
+    return render(request,'profile/seekerinfo.html',{'seekerdadainfo': seekerdadainfo})

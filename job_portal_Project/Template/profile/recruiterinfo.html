@@ -1,0 +1,23 @@
+{% extends 'profile/profilePage.html' %}
+
+{% block profile %}
+
+
+{% for i in recdadainfo %}
+
+<h3>Company Name:</h3>
+<p>{{i.company_name}}</p>
+
+<h3>Company Address:</h3>
+<p>{{i.company_address}}</p>
+
+<h3>Company Description:</h3>
+<p>{{i.company_description}}</p>
+    
+{% endfor %}
+    
+
+
+
+  
+{% endblock profile %}

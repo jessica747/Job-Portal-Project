@@ -1,0 +1,17 @@
+{% extends 'profile/profilePage.html' %}
+
+
+{% block profile %}
+
+{% for i in seekerdadainfo %}
+
+<h3>Skill set:</h3>
+<p>{{i.skill_set}}</p>
+
+<a href="/{{i.resume}}" target="_blank">Resume</a>
+
+
+{% endfor %}
+    
+{% endblock profile %}
+    

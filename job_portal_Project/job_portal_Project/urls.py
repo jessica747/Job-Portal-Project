@@ -23,4 +23,10 @@ urlpatterns = [
     path('profileinfoPage/',profileinfoPage,name="profileinfoPage"),
 
 
+    path('recruiterinfo/',recruiterinfo,name="recruiterinfo"),
+    path('seekerinfo/',seekerinfo,name="seekerinfo"),
+
+
+
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
