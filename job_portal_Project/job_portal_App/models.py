@@ -42,3 +42,13 @@ class add_job_model(models.Model):
         return self.title
 
 
+class apply_job_model(models.Model):
+    applicant=models.ForeignKey(custom_user_model,on_delete=models.CASCADE,null=True)
+    applied_job=models.ForeignKey(add_job_model,on_delete=models.CASCADE,null=True)
+    status=models.CharField(default='Pending',max_length=100,null=True)
+    skills=models.TextField(null=True)
+    resume=models.FileField(upload_to='media/applyresume',null=True)
+
+
+    def __str__(self):
+        return self.skills

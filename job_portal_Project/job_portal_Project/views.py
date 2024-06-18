@@ -90,7 +90,6 @@ def profilePage(request):
 
 @login_required
 def profileinfoPage(request):
-   
     return render(request,'profile/profileinfoPage.html')
 
 
@@ -104,3 +103,58 @@ def recruiterinfo(request):
 def seekerinfo(request):
     seekerdadainfo=seeker_info_model.objects.all()
     return render(request,'profile/seekerinfo.html',{'seekerdadainfo': seekerdadainfo})
+
+
+@login_required
+def postedjob(request):
+    current_user=request.user
+    if current_user.user_type == 'recruiter':
+        posteddata=add_job_model.objects.filter(adduser=current_user)
+    return render(request,'recruiter/postedjob.html',{'posteddata':posteddata})
+
+
+@login_required
+def applyjob(request,jobid):
+    job=add_job_model.objects.get(id=jobid)
+    if request.method=='POST':
+        applyjobdata=apply_job_form(request.POST,request.FILES)
+        if applyjobdata.is_valid():
+            jobdata=applyjobdata.save(commit=False)
+            jobdata.applicant=request.user
+            jobdata.applied_job=job
+            jobdata.save()
+            return redirect('joblistPage')
+    else:
+        applyjobdata=apply_job_form()
+    return render(request,'seeker/applyjob.html',{'applyjobdata':applyjobdata})
+
+@login_required
+def appliedjob(request):
+    current_user=request.user
+    applieddata=apply_job_model.objects.filter(applicant=current_user)
+
+    return render(request,'seeker/appliedjob.html',{'applieddata':applieddata})
+
+@login_required
+def applicant(request,jobid):
+    job=add_job_model.objects.get(id=jobid)
+    applicantdata=apply_job_model.objects.filter(applied_job=job)
+    return render(request,'recruiter/applicant.html',{'applicantdata':applicantdata})
+
+
+@login_required
+def jobreject(request,jobid):
+    jobrejectinfo=apply_job_model.objects.get(id=jobid)
+    jobrejectinfo.status="Rejected"
+    jobrejectinfo.save()
+    
+    return redirect('postedjob')
+
+@login_required
+def approved(request,jobid):
+    approveddata=apply_job_model.objects.get(id=jobid)
+    approveddata.status="Approved"
+    approveddata.save()
+    
+    return redirect('postedjob')
+

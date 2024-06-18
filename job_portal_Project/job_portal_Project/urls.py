@@ -24,7 +24,16 @@ urlpatterns = [
 
 
     path('recruiterinfo/',recruiterinfo,name="recruiterinfo"),
+    path('postedjob/',postedjob,name="postedjob"),
+    path('applicant/<str:jobid>',applicant,name="applicant"),
+    path('jobreject/<str:jobid>',jobreject,name="jobreject"),
+    path('approved/<str:jobid>',approved,name="approved"),
+
+
+
     path('seekerinfo/',seekerinfo,name="seekerinfo"),
+    path('applyjob/<str:jobid>',applyjob,name="applyjob"),
+    path('appliedjob/',appliedjob,name="appliedjob"),
 
 
 

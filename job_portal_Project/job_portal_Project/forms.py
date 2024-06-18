@@ -18,6 +18,12 @@ class add_job_form(forms.ModelForm):
     class Meta:
         model=add_job_model
         fields= ['title','number_of_openings','category','skills_set','job_description']
+
+
+class apply_job_form(forms.ModelForm):
+    class Meta:
+        model=apply_job_model
+        fields= ['skills','resume']
     
         
         

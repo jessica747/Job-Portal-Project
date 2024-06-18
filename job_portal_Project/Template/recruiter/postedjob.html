@@ -1,0 +1,74 @@
+{% extends 'profile/profilePage.html' %}
+
+{% block profile %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        #customers {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #customers td,
+        #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #customers tr:hover {
+            background-color: #ddd;
+        }
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Posted Job</h1>
+
+    <table id="customers">
+        <tr>
+            <th>Title</th>
+            <th>Number of Openings</th>
+            <th>category</th>
+            <th>Action</th>
+        </tr>
+
+        
+        {% for i in posteddata %}
+        <tr>
+            <td>{{i.title}}</td>
+            <td>{{i.number_of_openings}}</td>
+            <td>{{i.category}}</td>
+            <td>
+            <a href="{% url 'deletejob' i.id %}">Delete</a>
+            <a href="{% url 'editjob' i.id %}">Edit</a>
+            <a href="{% url 'viewjob' i.id %}">view</a>
+            <a href="{% url 'applicant' i.id %}">Applicant</a>
+            </td>
+        </tr>
+            
+        {% endfor %}
+            
+    </table>
+
+</body>
+
+</html>
+
+
+{% endblock profile %}
